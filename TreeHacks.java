@@ -12,80 +12,67 @@ import java.awt.image.*;
 
 import com.sun.medialib.mlib.Image;
 
-public class TreeHacks extends GraphicsProgram {
-	private void run() {
-		Scene();
-		addImage1();
-		addMouseListeners();		
+public class TreeHacks extends JFrame {
+	
+	private Scene Image1;	
+	private Scene Image2;		
+	private Scene Image3;
+	private Scene Image4;	
+	
+	
+	public void run() {
+
+		Scene
+		
 		setUp();
-		getObjects();
-		openDoor();
+		addActionListener();		
+		
 	}
 
 	
-	private void addImage1() {
-		JImage image1 = new JImage("//image to be imported");
-		image1.setSize(getWidth(); getHeight());
-		image1.sendToBack();
-		add(image1);		
+	private void setUp() {
+		
+		makeFrame();
+		makeWelcomeLabel();
+		private HashMap<Rectangle, String> cords1;
+		private HashMap<Rectangle, String> cords2;
+		private HashMap<Rectangle, String> cords3;
+		private HashMap<Rectangle, String> cords4;
+		cords1.put(new Rectangle(0,380,75,475), "Image4"); 
+		
+		
+	}	
+		
+	private void makeFrame() {
+		JFrame ourFrame = new JFrame("image.file");
+		add(Image1);		
+	}	
+		
+	
+		
+	private void makeButton () {
+		
+		panel.setLayout null; 
+		Button b = new Button("");		
+		b.setOpaque(false);
+		b.setContentAreaFilled(false);
+		b.setBorderPainter(false);
+		panel.add(b);
+	
+	}
+	
+	 private void makeWelcomeLabel() {
+		JLabel welcome = new JLabel("Good morning, your task in this game will be to figure out where you are! How? Consider exploring around this room...");
+		welcome.setFont("Calibri-bold-30");
+		welcome.setColor(Color.CYAN); 
+		ourFrame.add(welcome, ourFrame.getWidth()/2, ourFrame.getHeight()/2);		
 		
 	}
 	
 	//The  to mouse being clicked
-	private void MouseClicked(MouseEvent e) {
+	public void actionPerformed (ActionEvent e) {
 		
 	}
 }
 
-
-public class Scene {
-	
-	private ArrayList<Link> links;
-	private HashMap<Item, Integer> currItems; //not sure exactly how we'll use the
-		//integer, but we'll have to somehow connect adding a specific item with a 
-		//change of state, and this is a possible way
-	private ArrayList<Item> possItems; 
-	private GImage image;
-	
-	
-	//constructor that sets only the image
-	public Scene(GImage newimage) {
-		image = newimage;
-	}
-	
-	
-	public GImage getImage(){return image;}
-	public void setImage(GImage image){this.image = image;}
-	
-	//keeping these as ArrayLists, and including the addLink method because
-	//not sure how we're going to deal with the data yet - if we'll add
-	//it all at once or not
-	public ArrayList<Link> getLinks(){return links;}
-	public void setLinks(ArrayList<Link> links){this.links = links;}
-	public void addLink(Link link){links.add(link);}
-	public void addLink(Scene scene, boolean bool, Rectangle hotspot)
-	{links.add(new Link(scene,bool,hotspot));}
-
-	public HashMap<Item, Integer> getCurrItems() {return currItems;}
-	public void setCurrItems(HashMap<Item, Integer> currItems) 
-	{this.currItems = currItems;}
-	
-	
-	//returns true if you can add the item, false if you can't
-	public boolean addCurrItem(Item item)
-	{
-		if(possItems.contains(item))
-		{
-			currItems.put(item, 0); //the zero is just a placeholder right now
-			return true;
-		}
-		return false;
-	}
-
-	public ArrayList<Item> getPossItems() {return possItems;}
-	public void setPossItems(ArrayList<Item> possItems) {this.possItems = possItems;}
-	public void addPossItem(Item item) {possItems.add(item);}
-}
-
-    Contact GitHub API Training Shop Blog About 
 
