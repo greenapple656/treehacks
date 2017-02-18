@@ -22,7 +22,22 @@ public class TreeHacks extends JFrame {
 	
 	public void run() {
 
-		Scene
+		try {
+   			File file_image1 = new File("1_Door.jpg");
+			File file_image2 = new File("2_Desk.jpg");
+			File file_image3 = new File("3_Man.jpg");
+			File file_image4 = new File("4_Bookshelf.jpg");
+   			Image im_image1 = ImageIO.read(file_image1);
+			Image im_image2 = ImageIO.read(file_image2);
+			Image im_image3 = ImageIO.read(file_image3);
+			Image im_image4 = ImageIO.read(file_image4);
+		} catch (IOException ex) {
+ 			   ex.printStackTrace();
+		}
+		Image1 = new Scene("image1", im_image1);
+		Image2 = new Scene("image2", im_image2);
+		Image3 = new Scene("image3", im_image3);
+		Image4 = new Scene("image4", im_image4);
 		
 		setUp();
 		addActionListener();		
@@ -39,7 +54,7 @@ public class TreeHacks extends JFrame {
 		private HashMap<Rectangle, String> cords3;
 		private HashMap<Rectangle, String> cords4;
 		cords1.put(new Rectangle(0,380,75,475), "Image4"); 
-		
+		cords1.put(new Rectangle(1275,380,1333,475), "Image2"); 
 		
 	}	
 		
