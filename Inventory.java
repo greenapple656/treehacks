@@ -23,7 +23,10 @@ public class Inventory extends JPanel implements MouseListener
 	{
 		setSize(1366, 200);
 		addMouseListener(this);
-		Rectangle[] boxCoordinates = {new Rectangle()};
+		Rectangle[] boxCoordinates = {new Rectangle()};, //Image of key
+								new Rectangle( , , , , ),//Image of paper
+								new Rectangle ( , , , , ), // Image of 
+		
 	}
 	
 	public void hide()
