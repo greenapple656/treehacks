@@ -62,33 +62,33 @@ public class TreeHacks {
 		}
 		 
 		//make HashMap<Rectangle, String> for the link lists of the scenes
-		Rectangle[][] linkAreas = {{new Rectangle(0,380,75,475), //image1 - left
-								new Rectangle(1275,380,1333,475), //right
-								new Rectangle(755,286,1016,592), //door
-								new Rectangle(1036,351,1101,413)}, //keypad
+		Rectangle[][] linkAreas = {{new Rectangle(0,380,75,95), //image1 - left
+								new Rectangle(1275,380,58,95), //right
+								new Rectangle(755,286,261,306), //door
+								new Rectangle(1036,351,65,62)}, //keypad
 								//image2: desk
-								{new Rectangle(0,380,75,475), //left
-								new Rectangle(1275,380,1333,475), //right
-								new Rectangle(254,423,804,617)}, //desk
+								{new Rectangle(0,380,75,95), //left
+								new Rectangle(1275,380,58,95), //right
+								new Rectangle(254,423,550,194)}, //desk
 								//image3: man
-								{new Rectangle(0,380,75,475), //left
-								new Rectangle(1275,380,1333,475), //right
-								new Rectangle(458,400,655,685)}, //man
+								{new Rectangle(0,380,75,95), //left
+								new Rectangle(1275,380,58,95), //right
+								new Rectangle(458,400,197,285)}, //man
 								//image4: bookshelf
-								{new Rectangle(0,380,75,475), //left
-								new Rectangle(1275,380,1333,475), //right
-								new Rectangle(536,277,778,605),}, //bookshelf
+								{new Rectangle(0,380,75,95), //left
+								new Rectangle(1275,380,58,95), //right
+								new Rectangle(536,277,242,328),}, //bookshelf
 								//image5: doorCU
-								{new Rectangle(951,311,1056,412), //keypad
-								new Rectangle(418,125,906,700), //door
-								new Rectangle(624,30,730,100)}, //back
+								{new Rectangle(951,311,105,101), //keypad
+								new Rectangle(418,125,488,575), //door
+								new Rectangle(624,30,106,70)}, //back
 								//image6: deskCU
-								{new Rectangle(624,30,730,100)}, //back
+								{new Rectangle(624,30,106,70)}, //back
 								//image7: manCU
-								{new Rectangle(747,388,804,432), //shackle
-								new Rectangle(624,30,730,100)}, //back
+								{new Rectangle(747,388,57,44), //shackle
+								new Rectangle(624,30,106,70)}, //back
 								//image8: bookshelfCU
-								{new Rectangle(624,30,730,100)}}; //back
+								{new Rectangle(624,30,106,70)}}; //back
 		
 		String[][] linkNames = {{"image2","image4","image5","image5"},
 								{"image3","image1","image6"},
@@ -113,11 +113,11 @@ public class TreeHacks {
 		//make ArrayList<Item> for item lists of scenes
 		Rectangle[][] itemAreas = {{},{},{},{},{}, //images 1-5
 									//image6
-									{new Rectangle(193,428,388,497), //book
-										new Rectangle(777,517,972,587), //key
-										new Rectangle(345,327,570,380)}, //papers
+									{new Rectangle(193,428,195,69), //book
+										new Rectangle(777,517,195,70), //key
+										new Rectangle(345,327,225,53)}, //papers
 									{}, //image7
-									{new Rectangle(636,371,705,414)}}; //image8
+									{new Rectangle(636,371,69,43)}}; //image8
 		String[][] itemFilenames = {{},{},{},{},{},//images 1-5				
 									{"img/books.png","img/key.png","img/papers.png"},
 									{}, //image7
