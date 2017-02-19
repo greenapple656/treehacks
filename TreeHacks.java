@@ -174,9 +174,9 @@ public class TreeHacks {
 								{"image3"},
 								{"image4"}};
 		String[][] linkPrompts = {{"","","",""},//left, right, door, keypad
-								{"The man clearly needs help. He can barely speak, but utters one word…","",""},//left, right, desk
+								{"You're shocked to see a man chained to the wall! He clearly needs help.\n\nHe can barely speak, but utters one word…","",""},//left, right, desk
 								{"","","To give the man an item in your inventory, click the item, then click the man."},//left, right, man
-								{"","The man clearly needs help. He can barely speak, but utters one word…",""},//left, right, bookshelf
+								{"","",""},//left, right, bookshelf
 								{"Nothing happens","The door won’t open",""},//keypad, door, back
 								{""},{""},{""}};//back
 		boolean[][] linkBools = {{false,false,false,false},//left, right, door, keypad

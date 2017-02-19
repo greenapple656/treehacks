@@ -48,7 +48,7 @@ public class Link extends JButton {	//button within a scene that effects a scene
 		setOpaque(false);
 		setContentAreaFilled(false);
 		this.prompt = prompt;
-		//setBorderPainted(false);
+		setBorderPainted(false);
 
 		setSize(rect.width, rect.height);
 		setLocation(rect.x, rect.y);
