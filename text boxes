@@ -1,0 +1,53 @@
+FIRST SCENE
+FIRST TEXT BOX
+“You wake up in a strange room without any memory of how you got there. In fact, you have no memory of anything at all. You don’t even remember who you are. All you know is that you’re in this room. And you should probably figure a way out…”
+
+SECOND TEXT BOX
+“Click on objects to explore your environment, click on text boxes to close them”
+
+DOOR CLOSE UP
+The door won’t open
+Nothing happens
+
+BOOKSHELF CLOSE UP
+You found a book
+To check your inventory, roll your mouse to the bottom of the screen
+
+MAN CLOSE UP
+The man clearly needs help. He can barely speak, but utters one word…
+
+Click on man,
+“La clé…la clé!”
+
+CLOSE UP DESK
+TOP LEFT – You found some papers. 
+To check your inventory, roll your mouse to the bottom of the screen
+Top RIGHT – You found a key
+To check your inventory, roll your mouse to the bottom of the screen
+
+CLOSE UP MAN
+“To give the man an item in your inventory, click the item, then click the man.” 
+
+IF GIVE PAPERS
+“Non! pas des papiers. La clé ! La clé ! »
+« Non, pas un livre ! La clé ! La clé »
+
+IF GIVE THE KEY
+TEXT Box « The man cries out, « Oui, la clé ! La clé!”
+
+NEXT TEXT BOX
+“You unlock the shackles and help him to his feet.”
+
+Next text box “La porte! La porte ! » he says
+
+WHEN USER CLICK ON DOOR…TRIGGER SCENE OF MAN TYPING IN CODE
+TEXT BOX “You help the man to the door, and he types in the code.”
+
+NEXT TEXT BOX
+“The door swings open, and you stare in disbelief when you realize where you are…” 
+
+NEXT SCENE TRIGGERS AFTER TEXT BOX
+“
+
+
+
