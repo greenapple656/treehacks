@@ -19,6 +19,10 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 
 public class TreeHacks {
 	
@@ -26,18 +30,38 @@ public class TreeHacks {
 	private static ArrayList<Scene> scenes;
 	private static HashMap<String, Scene> ht;
 	
-	private final static int WIDTH=1366;
-	private final static int HEIGHT=768;
+	public final static int WIDTH=1366;
+	public final static int HEIGHT=768;
 	
 	public static void main(String[] args)
 	{
 		rootFrame = new JFrame();
 		initScenes();
 		rootFrame.setSize(WIDTH,HEIGHT);
-		rootFrame.add(scenes.get(0));
+		
+		//JLayeredPane layeredPane = new JLayeredPane();
+		//layeredPane.setLayout(null);
+		
+		//JPanel scrollPanel = new JPanel();
+		//JScrollPane scrollPane = new JScrollPane();
+		//scrollPane.add(scrollPanel);
+		//rootFrame.getContentPane().setLayout(null);
+		//scrollPane.setSize(WIDTH, HEIGHT);
+		//scrollPane.add(scenes.get(0));
+		//rootFrame.setContentPane(layeredPane);
+		scenes.get(0).setSize(WIDTH,HEIGHT);
+		scenes.get(0).setLocation(0,0);
+		rootFrame.getContentPane().add(scenes.get(0));
+		
+		//Inventory ivt = new Inventory();
+		//rootFrame.getContentPane().add(ivt);
+		//ivt.setSize(Inventory.MIN_WIDTH, Inventory.MIN_HEIGHT);
+		//ivt.setLocation(400,400);		
 		
 		rootFrame.setVisible(true);
+		rootFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
+	
 	private static void initScenes()
 	{
 		scenes = new ArrayList<Scene>();
@@ -123,25 +147,28 @@ public class TreeHacks {
 									{}, //image7
 									{"img/books.png"}};
 		
-		ArrayList<Item> items = new ArrayList<Item>();
+		HashMap<Rectangle, Item>[] items = (HashMap<Rectangle, Item>[]) new HashMap[itemAreas.length];
 		for(int i=0; i<itemAreas.length; i++)
 		{
+			HashMap<Rectangle, Item> map = new HashMap<Rectangle, Item>();
 			for(int j=0; j<itemAreas[i].length; j++)
 			{
 				Image img;
 				try {
 				    img = ImageIO.read(new File(itemFilenames[i][j]));
-				    items.add(new Item(itemAreas[i][j],img));
+				    map.put(itemAreas[i][j], new Item(img));
 				} 
 				catch (IOException e) {
 					e.printStackTrace();
 				}		
 			}
+			items[i] = map;
 		}
 		
 		for(int i=0; i<scenes.size(); i++)
 		{
-			scenes.get(i).addButtons(rootFrame, ht, linkMaps[i], items);
+			scenes.get(i).addButtons(rootFrame, ht, linkMaps[i], items[i]);
 		}
+
 	}
 }
