@@ -23,9 +23,9 @@ public class Inventory extends JPanel implements MouseListener
 	{
 		setSize(1366, 200);
 		addMouseListener(this);
-		Rectangle[] boxCoordinates = {{new Rectangle(8,50,140,140)};, //Image of key
+		Rectangle[] boxCoordinates = {new Rectangle(8,50,140,140)};, //Image of key
 								new Rectangle(180,50,140,140),//Image of paper
-								new Rectangle (352,50,140,140), // Image of books
+								new Rectangle (352,50,140,140)} // Image of books
 		}
 	}
 	
