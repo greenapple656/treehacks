@@ -3,6 +3,8 @@ package treehacks;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,10 +19,10 @@ public class Scene extends JPanel{
 	
 	//set coords before instantiating
 	private String name;
-	private HashMap<Rectangle, String> coords;
 	private ArrayList<Item> currItems;
 	private ArrayList<Item> possItems;
 	private Image image;
+	private ArrayList<Link> links;
 	
 	//"lazy" constructor
 	public Scene(String name, Image image)
@@ -30,22 +32,63 @@ public class Scene extends JPanel{
 	}
 	
 	//constructor
-	public void addButtons(JFrame root, HashMap<String, Scene> ht, HashMap<Rectangle, String> links, HashMap<Rectangle, Item> items)
+	public void addButtons(JFrame root, Inventory ivt, HashMap<String, Scene> ht, 
+							Link[] links, 
+							HashMap<Rectangle, Item> items,
+							HashMap<Rectangle, Reception> npcs)
 	{
 		setLayout(null);
-		coords = links;
+		this.links = new ArrayList<Link>();
 		//currItems = (ArrayList<Item>) items.values();
-		for(Rectangle rect:coords.keySet())
+		for(Link link:links)
 		{
-			add(new Link(links.get(rect), ht, root, this, rect));
+			add(link);
+			this.links.add(link);
 		}
+			
 		for(Rectangle rect:items.keySet())
 		{
-			ImageIcon icon = new ImageIcon(items.get(rect).getImage());
-			JButton button = new JButton(icon);
+			//ImageIcon icon = new ImageIcon(items.get(rect).getImage());
+			JButton button = new JButton();//icon);
+			button.setOpaque(false);
+			button.setContentAreaFilled(false);
+			button.setBorderPainted(false);
+			
+			final HashMap<Rectangle, Item> fitems = items;
+			final JButton fbutton = button;
+			final Inventory fivt = ivt;
+			final Rectangle frect = rect;
+			final JFrame froot = root;
+			button.addActionListener(new ActionListener() { 			
+				  public void actionPerformed(ActionEvent e) {
+					fbutton.setVisible(false);
+					fivt.addItem(fitems.get(frect));
+					String name = fitems.get(frect).getName();
+					TreeHacks.showText("You found "
+							+ (name.substring(name.length()-1).equals("s")?"":"a ")
+					+ fitems.get(frect).getName() + "\n\nTo check your inventory, roll your mouse to the bottom of the screen");
+					froot.repaint();
+				  } 
+			});
 			add(button);
+			
 			button.setSize(rect.width, rect.height);
 			button.setLocation(rect.x, rect.y);
+		}
+		for(Rectangle rect:npcs.keySet())
+		{
+			Reception reception = npcs.get(rect);
+			
+			//hard-coding ArrayList here bc I'm desperate
+			ArrayList<Item> possibleItems = new ArrayList<Item>();			
+			for(Item item:TreeHacks.allItems)
+			{if(item.getName().equals("key")){possibleItems.add(item);}}
+			
+			
+			NPC npc = new NPC(reception, ivt, possibleItems);
+			npc.setLocation(rect.x, rect.y);
+			npc.setSize(rect.width, rect.height);
+			add(npc);
 		}
 	}
 	
@@ -63,12 +106,46 @@ public class Scene extends JPanel{
 		repaint();
 	}
 	
-	//keeping these as ArrayLists, and including the addLink method because
-	//not sure how we're going to deal with the data yet - if we'll add
-	//it all at once or not
-	public HashMap<Rectangle,String> getCoords(){return coords;}
-	public void setCoords(HashMap<Rectangle,String> coords){this.coords = coords;}
-	public void addCoord(Rectangle rect, String name){coords.put(rect, name);}
+	public void addLink(Link link)
+	{
+		add(link);
+		links.add(link);
+		repaint();
+	}
+	
+	public void deleteLink(String name)
+	{
+		int removeIndex = 0;
+		Link removeMe;
+		for(int i=0; i<links.size(); i++)
+		{
+			if(links.get(i).getName()==null||links.get(i).getName().equals(name))
+			{
+				removeIndex = i;
+				removeMe = links.get(i);
+				remove(removeMe);
+				break;
+			}
+		}
+		links.remove(removeIndex);
+		repaint();
+	}
+	
+	public void printLinks()
+	{
+		for(Link link:links)
+		{
+			if(link!=null)
+			System.out.println(link.getName());
+		}
+	}
+	
+	public void addNPC(Rectangle rect, NPC npc)
+	{
+		npc.setLocation(rect.x, rect.y);
+		npc.setSize(rect.width, rect.height);
+		add(npc);
+	}
 
 	public ArrayList<Item> getCurrItems() {return currItems;}
 	public void setCurrItems(ArrayList<Item> currItems) 
