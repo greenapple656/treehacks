@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,9 +18,7 @@ public class Scene extends JPanel{
 	//set coords before instantiating
 	private String name;
 	private HashMap<Rectangle, String> coords;
-	private HashMap<Item, Integer> currItems; //not sure exactly how we'll use the
-		//integer, but we'll have to somehow connect adding a specific item with a 
-		//change of state, and this is a possible way
+	private ArrayList<Item> currItems;
 	private ArrayList<Item> possItems;
 	private Image image;
 	
@@ -30,15 +30,22 @@ public class Scene extends JPanel{
 	}
 	
 	//constructor
-	public Scene(String name, Image image, JFrame root, HashMap<String, Scene> ht)
+	public void addButtons(JFrame root, HashMap<String, Scene> ht, HashMap<Rectangle, String> links, HashMap<Rectangle, Item> items)
 	{
-		this.name = name;
-		this.image = image;
 		setLayout(null);
-		
+		coords = links;
+		//currItems = (ArrayList<Item>) items.values();
 		for(Rectangle rect:coords.keySet())
 		{
-			add(new Link(name, ht, root, this, rect));
+			add(new Link(links.get(rect), ht, root, this, rect));
+		}
+		for(Rectangle rect:items.keySet())
+		{
+			ImageIcon icon = new ImageIcon(items.get(rect).getImage());
+			JButton button = new JButton(icon);
+			add(button);
+			button.setSize(rect.width, rect.height);
+			button.setLocation(rect.x, rect.y);
 		}
 	}
 	
@@ -63,18 +70,22 @@ public class Scene extends JPanel{
 	public void setCoords(HashMap<Rectangle,String> coords){this.coords = coords;}
 	public void addCoord(Rectangle rect, String name){coords.put(rect, name);}
 
-	public HashMap<Item, Integer> getCurrItems() {return currItems;}
-	public void setCurrItems(HashMap<Item, Integer> currItems) 
+	public ArrayList<Item> getCurrItems() {return currItems;}
+	public void setCurrItems(ArrayList<Item> currItems) 
 	{this.currItems = currItems;}
 	//returns true if you can add the item, false if you can't
 	public boolean addCurrItem(Item item)
 	{
 		if(possItems.contains(item))
 		{
-			currItems.put(item, 0); //the zero is just a placeholder right now
+			currItems.add(item); //the zero is just a placeholder right now
 			return true;
 		}
 		return false;
+	}
+	public void removeCurrItem(Item item)
+	{
+		currItems.remove(item);
 	}
 
 	public ArrayList<Item> getPossItems() {return possItems;}

@@ -1,10 +1,22 @@
 package treehacks;
 
-import acm.graphics.GImage;
+import java.awt.Image;
+import java.awt.Rectangle;
 
-public class Item 
+import javax.swing.JButton;
+
+public class Item
 {
-	private GImage image;
+	private Image image;
+	private boolean active = false;
 	
-	public Item(GImage image){this.image = image;}
+	public Item(Image image){
+		this.image = image;
+	}
+	
+	public void setImage(Image image){this.image = image;}
+	public Image getImage(){return image;}
+
+	public boolean isActive() {return active;}
+	public void setActive(boolean active) {this.active = active;}	
 }
