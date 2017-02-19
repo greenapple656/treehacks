@@ -12,10 +12,8 @@ import javax.swing.JPanel;
 
 public class Inventory extends JPanel implements MouseListener
 {
-	public final static int MIN_WIDTH = 100;
-	public final static int MIN_HEIGHT = 30;
-	public final int MIN_X = 400;
-	public final int MIN_Y = 400;
+	public final static int MIN_X = 0;
+	public final static int MIN_Y = 670;
 	
 	private Item[] items = new Item[8];
 	private int numItems = 0;
@@ -23,13 +21,14 @@ public class Inventory extends JPanel implements MouseListener
 	
 	public Inventory()
 	{
-		setSize(MIN_WIDTH, MIN_HEIGHT);
+		setSize(1366, 200);
+		addMouseListener(this);
+		Rectangle[] boxCoordinates = {new Rectangle()};
 	}
 	
 	public void hide()
 	{
-		setSize(100,30);
-		setLocation(0,0);
+		setLocation(MIN_X,MIN_Y);
 	}
 	public void show()
 	{
@@ -51,7 +50,7 @@ public class Inventory extends JPanel implements MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("Clicked");
 		
 	}
 
