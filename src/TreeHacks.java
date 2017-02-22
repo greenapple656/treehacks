@@ -1,7 +1,7 @@
 package treehacks;
 
 /*
- * File: TreeHacks.java
+ * : TreeHacks.java
  * -------------------
  * 
  */ 
@@ -118,15 +118,15 @@ public class TreeHacks {
 	{
 		scenes = new ArrayList<Scene>();
 		ht = new HashMap<String, Scene>();
-		String[] filenames = {"img/1_Door.jpg","img/2_Desk.jpg","img/3_Man.jpg","img/4_Bookshelf.jpg",
-				"img/5_Door CU.jpg","img/6_Desk CU.jpg","img/7_Man CU.jpg","img/8_Bookshelf CU.jpg"};
+		String[] filenames = {"/1_Door.jpg","/2_Desk.jpg","/3_Man.jpg","/4_Bookshelf.jpg",
+				"/5_Door CU.jpg","/6_Desk CU.jpg","/7_Man CU.jpg","/8_Bookshelf CU.jpg"};
 		
 		//"lazily" construct the objects
 		for(int i=0; i<filenames.length; i++)
 		{
 			Image img;
 			try {
-			    img = ImageIO.read(new File(filenames[i]));
+			    img = ImageIO.read(TreeHacks.class.getResource(filenames[i]));
 			    String name = "image" + (i+1);
 			    Scene newscene = new Scene(name, img);
 			    scenes.add(newscene);
@@ -214,9 +214,9 @@ public class TreeHacks {
 									{}, //image7
 									{new Rectangle(358,411,47,64)}}; //image8
 		String[][] itemFilenames = {{},{},{},{},{},//images 1-5				
-									{"img/Papers.png","img/Key.png"},
+									{"/Papers.png","/Key.png"},
 									{}, //image7
-									{"img/Book.png"}};
+									{"/Book.png"}};
 		
 		HashMap<Rectangle, Item>[] items = (HashMap<Rectangle, Item>[]) new HashMap[itemAreas.length];
 		for(int i=0; i<itemAreas.length; i++)
@@ -227,7 +227,7 @@ public class TreeHacks {
 				Image img;
 				try {
 					String filename = itemFilenames[i][j];
-				    img = ImageIO.read(new File(filename));
+				    img = ImageIO.read(TreeHacks.class.getResource(filename));
 				    Item item = new Item(img,filename.substring(4,filename.length()-4).toLowerCase());
 				    map.put(itemAreas[i][j], item);
 				    allItems.add(item);
@@ -248,7 +248,7 @@ public class TreeHacks {
 			public void react(NPC receptor) {
 				Image img;
 				try {
-				    img = ImageIO.read(new File("img/9_DoorCode.jpg"));
+				    img = ImageIO.read(TreeHacks.class.getResource("9_DoorCode.jpg"));
 				    Scene lastScene = new Scene("image9", img);
 				    lastScene.addButtons(rootFrame, ivt, ht, new Link[0],
 				    		new HashMap<Rectangle,Item>(), new HashMap<Rectangle,Reception>());
