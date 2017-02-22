@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -44,9 +43,9 @@ public class Inventory extends JPanel implements MouseListener
 		{
 			Image glow;
 			try {
-				image = ImageIO.read(new File("img/inventory.jpg"));
+				image = ImageIO.read(Inventory.class.getResource("/inventory.jpg"));
 				
-				glow = ImageIO.read(new File("img/Glow.png"));
+				glow = ImageIO.read(Inventory.class.getResource("/Glow.png"));
 				glowLabels[i]= new JLabel(new ImageIcon(glow));
 				//labels[i].setSize(RECTANGLES[i].width, RECTANGLES[i].height);
 				glowLabels[i].setSize(154,154);
@@ -169,9 +168,7 @@ public class Inventory extends JPanel implements MouseListener
 		g.drawImage(image, 0, 0, null);
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent arg0) {show();}
-	@Override
 	public void mouseExited(MouseEvent arg0) {if(arg0.getY()<0){hide();}}
 	//unnecessary methods
 	public void mouseClicked(MouseEvent arg0) {}
